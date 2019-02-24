@@ -4,23 +4,23 @@ object BadVariableNamesEasy extends ConstantArrayDataSource[String](dataArray = 
   "good name", "a + 2", "u + 3", "a + b", "b + c", "i + 2", "")) {}
 
 object BadVariableNamesMedium extends ConstantArrayDataSource[String](dataArray = Array(
-  "0Mad", "alter-ego", "0bojeMoi", "2hard4you", ".add", "-ego", "|name", "for", "while", "do"
+  "0Mad", "alter-ego", "0bojeMoi", "2hard4you", ".add", "-ego", "2name", "1_x", "2_y", "3_w_x_4"
 )) {}
 
 object BadVariableNamesHard extends ConstantArrayDataSource[String](dataArray = Array(
-  "1eet", "alter-ego", "0bojeMoi", "2hard4you"
+  "1eet", "alter-ego", "0bojeMoi", "2hard4you", "for", "while", "do"
 )) {}
 
 object GoodVariableNamesEasy extends ConstantArrayDataSource[String](dataArray = Array("iCount", "badName", "i", "j", "a",
-  "b", "c", "one", "oneRing", "darkLordSauron", "i2", "i3", "k23", "o09", "middleEarth",
+  "b", "c", "one", "oneRing", "darkLord", "sauron",  "i2", "i3", "k23", "o09", "middleEarth",
   "dwarfLords", "nineRings", "theElves", "powerOfTheRing","more", "great", "max", "min")) {}
 
 object GoodVariableNamesMedium extends ConstantArrayDataSource[String](dataArray = Array(
-  "_Name", "it_is_G_R_E_A_T_name", "_alo", "_var_va2"
+  "_Name", "it_is_G_R_E_A_T_name", "_alo", "_var_va2", "_a2", "_x_4_x", "_2", "AAA", "XX"
 )) {}
 
 object GoodVariableNamesHard extends ConstantArrayDataSource[String](dataArray = Array(
-  "_1ame", "____it_is_G_R_E_A_T_name", "_alo", "_var_va2"
+  "_1ame", "____it_is_G_R_E_A_T_name", "_alo", "_var_va2", "___________"
 )) {}
 
 
@@ -53,45 +53,55 @@ object ShortGoodStringLiterals extends ConstantArrayDataSource[String](dataArray
 
 
 object EasyGoodStringLiterals extends ConstantArrayDataSource[String](dataArray = Array(
-  "\"I amar prestar aen. (ee amar prestar ein)\"",
-  "\"The world has changed.\"",
+  "\"I amar prestar aen.\"",
+  "\"The world\"",
 
-  "\"Han mathon ne nen. (han mathon ne nen)\"",
-  "\"I feel it in the water.\"",
+  "\"Han mathon ne nen.\"",
+  "\"I feel it in the\"",
 
-  "\"Han mathon ne chae. (han mathon ne hai)\"",
+  "\"Han mathon ne chae.\"",
   "\"I feel it in the earth.\"",
 
-  "\"A han nostron ned wilith. (ahan nothon ne gwilith)\"",
-  "\"(and?) I smell it in the air.\"",
+  "\"A han nostron ned\"",
+  "\"I smell it in the air.\"",
 
-  "\"Much that once was, is lost\"",
-  "\"For none now live who remember it.\"",
+  "\"Much that once was\"",
+  "\"For none now live\"",
+  "\" who remember it\"",
 
-  "\"It began with the forging of the great rings.\"",
-  "\"Three were given to the Elves:\"",
-  "\"Immortal, wisest and fairest of all beings.\"",
+  "\"It began with the forging\"",
+  "\" of the great rings.\"",
+  "\"were given to the Elves\"",
+  "\"wisest and fairest\"",
 
   "\"Seven to the dwarf lords:\"",
-  "\"Great miners and craftsmen of the mountain halls.\"",
+  "\"Great miners and craftsmen\",",
+  "\" of the mountain halls\"",
 
-  "\"And nine, nine rings were gifted to the race of men who,\"",
-  "\"above all else, desire power.\"",
+  "\"And nine, nine rings \"",
+  "\"gifted to the race of men\"",
+  "\"above all else\"",
 
-  "\"For within these rings was bound the strength\"",
-  "\"and the will to govern each race.\"",
+  "\"For within these rings\"",
+  "\"was bound the strength\"",
+  "\"will to govern each race.\"",
 
-  "\"But they were, all of them, deceived;\"",
-  "\"for another ring was made.\"",
-  "\"In the land of Mordor, in the fires of Mount Doom,\"",
-  "\"the Dark Lord Sauron forged, in secret, a master ring.\"",
+  "\"But they were deceived\"",
+  "\"another ring was made.\"",
+  "\"the land of Mordor\"",
+  "\"fires of Mount Doom,\"",
+  "\"Dark Lord Sauron\"",
+  "\"a master ring.\"",
 
-  "\"And into this ring he poured his cruelty, his malice\"",
-  "\"and his will to dominate all life.\"",
+  "\"And into this ring he\"",
+  "\"poured his cruelty\"",
+  "\"and his will to dominate\"",
 
-  "\"One ring to rule them all.\"",
+  "\"One ring\"",
+  "\" to rule them all.\"",
 
-  "\"One by one, the free lands of Middle-earth fell\"",
+  "\"One by one, the \"",
+  "\"lands of Middle-earth\"",
   "\"to the power of the ring.\""
 )) {}
 
@@ -108,7 +118,7 @@ object StringLiteralsDataSource extends CombinedTestDataSource[String](
 
 ///NUMBERS
 object LongValuesDataSource extends CombinedTestDataSource[String](
-  easyGood = new RandomValuesDataSource(1, 53),//easy good
+  easyGood = new RandomValuesDataSource(1, 48),//easy good
   easyBad = new SelectRandomDataSource[String](Array(new RandomValuesDataSource(75, 100), new RandomValuesDataSource(75, 100), ShortGoodStringLiterals)),
   mediumGood = new RandomValuesDataSource(32, 60),
   mediumBad = new RandomValuesDataSource(68, 100),

@@ -5,13 +5,13 @@ abstract class DataSource[T] {
 }
 
 abstract class TestDataSource[T] {
-  def getRandom(good: Boolean, level: TestLevel, r: Random): T
+  def getRandom(good: Boolean, level: QuestionLevel, r: Random): T
 }
 
 class CombinedTestDataSource[T](easyGood: DataSource[T], easyBad: DataSource[T],
                                 mediumGood: DataSource[T], mediumBad: DataSource[T],
                                 hardGood: DataSource[T], hardBad: DataSource[T]) extends TestDataSource[T] {
-  override def getRandom(good: Boolean, level: TestLevel, r: Random): T = {
+  override def getRandom(good: Boolean, level: QuestionLevel, r: Random): T = {
     (good, level) match {
       case (true, Easy()) => easyGood.getRandom(r)
       case (false, Easy()) => easyBad.getRandom(r)

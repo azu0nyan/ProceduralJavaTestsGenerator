@@ -1,9 +1,8 @@
-import VariableDeclarationTest.getDataSourceForType
 
 import scala.util.Random
 
-object ScopeTest extends Test {
-  override def generate(correct: Boolean, level: TestLevel, r: Random): String = {
+class ScopeQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question {
+  override def generate(r: Random, id: Int): QuestionAndAnswer = {
     val namesSource = VariableNamesDataSource
     //1 2 same type
     val valsSource1 = getDataSourceForType(r)
@@ -26,7 +25,7 @@ object ScopeTest extends Test {
       varName3 = varName3 + "3"
     }
 
-    if (correct) {
+    val question = if (answer.v) {
       val sType = r.nextInt(4)
       sType match {
         case 0 =>
@@ -98,5 +97,6 @@ object ScopeTest extends Test {
            """.stripMargin
       }
     }
+    new QuestionAndAnswer(question, answer , id)
   }
 }

@@ -1,22 +1,19 @@
 import scala.util.Random
 
 
-object VariableDeclarationTest extends Test {
+class VariableDeclarationSyntaxQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question{
 
 
-  override def generate(correct: Boolean, level: TestLevel, r: Random): String = {
+  override def generate(r: Random, id: Int): QuestionAndAnswer = {
     var valsSource = getDataSourceForType(r)
     var namesSource = VariableNamesDataSource
-    var error = if (correct) 0 else r.nextInt(3) + 1
-    var correctName = error != 1
-    var correctValues = error != 2
-    var correctSyntax = error != 3
+    var error = if (answer.v) 0 else r.nextInt(3) + 1
 
     var varType = valsSource._1
-    var varName = namesSource.getRandom(correctName, level, r)
-    var varValue = valsSource._2.getRandom(correctValues, level, r)
+    var varName = namesSource.getRandom(true, level, r)
+    var varValue = valsSource._2.getRandom(true, level, r)
 
-    if (correctSyntax) {
+    val question = if (answer.v) {
       val sType = r.nextInt(4)
       sType match {
         case 0 => s"$varType $varName = $varValue;"
@@ -34,6 +31,6 @@ object VariableDeclarationTest extends Test {
         case 4 => s"$varType $varName; \n$varName   $varValue;"
       }
     }
-
+    new QuestionAndAnswer(question, answer, id)
   }
 }
