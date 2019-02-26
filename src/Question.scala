@@ -3,8 +3,11 @@ import scalatags.Text
 import scala.util.Random
 
 abstract class QuestionLevel
+
 case class Easy() extends QuestionLevel
+
 case class Medium() extends QuestionLevel
+
 case class Hard() extends QuestionLevel
 
 
@@ -21,9 +24,21 @@ abstract class Question {
     }
   }
 
-  def generateQaA(seed: Int, index:Int): QuestionAndAnswer ={
-    val r= new Random(seed)
-    generate( r, index)
+  def generateQaA(seed: Int, index: Int): QuestionAndAnswer = {
+    val r = new Random(seed)
+    generate(r, index)
+  }
+
+  def getRandomShortVarName(notEqual: Set[String], r: Random): String = {
+    var res = getRandomShortVarName(r)
+    while (notEqual.contains(res)) {
+      res = getRandomShortVarName(r)
+    }
+    res
+  }
+
+  def getRandomShortVarName(r: Random): String = {
+    (('a' to 'z').take(r.nextInt(26)).end.toString) + (if (r.nextBoolean()) "" else (0 to 9).take(r.nextInt(10)).end.toString)
   }
 }
 

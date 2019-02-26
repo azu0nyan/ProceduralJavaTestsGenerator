@@ -18,6 +18,58 @@ object Generator {
         "name & class:_____________________________________",
         0,
         Seq(
+          new ScopeQuestion(BoolAnswer(true), Easy()),
+          new ScopeQuestion(BoolAnswer(true), Easy()),
+          new ScopeQuestion(BoolAnswer(true), Easy()),
+          new ScopeQuestion(BoolAnswer(false), Easy()),
+          new ScopeQuestion(BoolAnswer(false), Easy()),
+          new ScopeQuestion(BoolAnswer(false), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(true), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(true), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(false), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(false), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(false), Easy()),
+          new IfSyntaxQuestion(BoolAnswer(false), Easy()),
+          new VariableDeclarationSyntaxQuestion(BoolAnswer(true), Easy()),
+          new VariableDeclarationSyntaxQuestion(BoolAnswer(false), Easy()),
+          new VariableDeclarationSyntaxQuestion(BoolAnswer(false), Easy()),
+          new VariableAssigmentTypeQuestion(BoolAnswer(true), Easy()),
+          new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy()),
+          new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy())
+        )
+      ),
+      new PagePrototype(
+        "name & class:_____________________________________",
+        1,
+        Seq(
+          new JCFailedSwapQuestion,
+          new JCSwapQuestion,
+          new JCSwapQuestion,
+          new JCStepsCountQuestion,
+          new JCStepsCountQuestion,
+          new JCClosestQuestion,
+          new JCDigitsSumKQuestion,
+          new JCDigitsSumKQuestion,
+          new JCDigitsCountKQuestion,
+          new JCDigitsCountKQuestion,
+          new JCYmXMullKQuestion,
+          new JCYmXMullKQuestion,
+          new JCarrayIndexesQuestion,
+          new JCarrayIndexesQuestion,
+        )
+      )
+    ),
+    "",
+    ""
+  )
+
+  def testPrototypeFirstTest:TestPrototype = new TestPrototype(
+    Seq(
+
+      new PagePrototype(
+        "name & class:_____________________________________",
+        0,
+        Seq(
           new VariableDeclarationSyntaxQuestion(BoolAnswer(true), Easy()),
           new VariableDeclarationSyntaxQuestion(BoolAnswer(true), Easy()),
           new VariableDeclarationSyntaxQuestion(BoolAnswer(true), Easy()),
@@ -34,14 +86,14 @@ object Generator {
           new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy()),
           new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy()),
           new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy()),
-          new VariableNamingQuestion(BoolAnswer(false), Easy()),
-          new VariableNamingQuestion(BoolAnswer(false), Medium()),
+          new ScopeQuestion(BoolAnswer(false), Easy()),
+          new ScopeQuestion(BoolAnswer(false), Medium()),
           new VariableNamingQuestion(BoolAnswer(false), Medium()),
           new VariableNamingQuestion(BoolAnswer(false), Medium()),
           new VariableNamingQuestion(BoolAnswer(true), Easy()),
           new VariableNamingQuestion(BoolAnswer(true), Medium()),
-          new VariableNamingQuestion(BoolAnswer(true), Medium()),
-          new VariableNamingQuestion(BoolAnswer(true), Medium()),
+          new ScopeQuestion(BoolAnswer(true), Medium()),
+          new ScopeQuestion(BoolAnswer(true), Medium()),
         )
       ),
       new PagePrototype(

@@ -6,7 +6,9 @@ object CssStyles extends StyleSheet {
   initStyleSheet()
   val questionPageDivStyle = cls(
     css("page-break-after") := "always"
-
+  )
+  val answerPageDivStyle = cls(
+    css("page-break-after") := "auto"
   )
 
   val questionListDivStyle = cls(
@@ -27,15 +29,15 @@ object CssStyles extends StyleSheet {
   )
 
   val questionDivStyle = cls(
-  //  backgroundColor := "green",
+    //  backgroundColor := "green",
     width := 450,
     display := "flex",
     flexWrap := "wrap",
     flexDirection := "row"
 
-  /*  borderStyle := "solid",
-    borderWidth := 0.5,
-    borderColor := "grey"*/
+    /*  borderStyle := "solid",
+      borderWidth := 0.5,
+      borderColor := "grey"*/
   )
 
   val questionIdDivStyle = cls(
@@ -50,22 +52,22 @@ object CssStyles extends StyleSheet {
   )
 
   val questionTextDivStyle = cls(
-//    borderStyle := "dotted",
-//    borderWidth := 1,
-//    borderColor := "blue",
+    //    borderStyle := "dotted",
+    //    borderWidth := 1,
+    //    borderColor := "blue",
     paddingLeft := 10
   )
 
 
- val answerTableStyle = cls(
+  val answerTableStyle = cls(
     width := 1000,
     height := 50,
-   borderCollapse := "collapse",
-   borderWidth := 1,
-   borderColor := "black",
-   textAlign := "center"
-
- )
+    borderCollapse := "collapse",
+    borderWidth := 1,
+    borderColor := "black",
+    textAlign := "center",
+    tableLayout := "fixed"
+  )
 
   val answerTableTdThStyle = cls(
     height := 25,
@@ -74,5 +76,14 @@ object CssStyles extends StyleSheet {
     borderWidth := 1,
     borderColor := "black",
     textAlign := "center"
+  )
+  val answerTableTdThStyleCorrect = cls(
+    height := 25,
+    borderCollapse := "collapse",
+    borderStyle := "solid",
+    borderWidth := 1,
+    borderColor := "black",
+    textAlign := "center",
+    backgroundColor := "black"
   )
 }

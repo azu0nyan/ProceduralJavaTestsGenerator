@@ -26,7 +26,7 @@ object HtmlBuilder {
   }
 
   def buildQuestionsPage(varTitle: String, page: Page):Frag = {
-    div(CssStyles.questionPageDivStyle)(
+    div(if (printQuestions) CssStyles.questionPageDivStyle else  CssStyles.answerPageDivStyle)(
       div(width := 1000, height := 25)(
         h2(float := "left", margin :=5)(page.title),
         h2(float := "right", margin :=5)( varTitle + " page:" + page.index)
@@ -44,11 +44,23 @@ object HtmlBuilder {
             for(question <- page.questions) yield th(CssStyles.answerTableTdThStyle)(question.index)
           ),
           tr(
-            for(question <- page.questions) yield td(CssStyles.answerTableTdThStyle)(if (printAnswers) question.answer.str() else "")
+            for(question <- page.questions) yield answerTD(question.answer)
           )
         )
       )
     )
+  }
+  def answerTD(answer:Answer): Frag ={
+    if(!printAnswers){
+      td(CssStyles.answerTableTdThStyle)("")
+    } else {
+      //td(CssStyles.answerTableTdThStyle)(if (printAnswers) question.answer.str() else "")
+      answer match {
+        case BoolAnswer(v) => td(if(v) CssStyles.answerTableTdThStyleCorrect else CssStyles.answerTableTdThStyle)
+        case IntAnswer(i) => td(CssStyles.answerTableTdThStyle)(i);
+        case _ => td(CssStyles.answerTableTdThStyle)("")
+      }
+    }
   }
 
   def buildQuestionHtml(question: QuestionAndAnswer): Frag = {

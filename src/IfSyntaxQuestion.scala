@@ -30,14 +30,14 @@ class IfSyntaxQuestion(answer: BoolAnswer, level: QuestionLevel) extends Questio
         case 0 if varType1 != "String" =>
           s"""$varType1 $varName1 = $varValue1;
              |if($varName1 < $varValue2){
-             |    $varType2 $varName2 = $varName1 + $varValue2
+             |    $varType2 $varName2 = $varName1 + $varValue2;
              |    System.out.println($varName1);
              |}
            """.stripMargin
         case 0 if varType1 == "String" =>
           s"""int x = 12;
              |if(x < 2){
-             |    $varType2 $varName2 = $varValue2 + $varValue2
+             |    $varType2 $varName2 = $varValue2 + $varValue2;
              |    System.out.println($varName1);
              |}
            """.stripMargin
