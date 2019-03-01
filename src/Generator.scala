@@ -136,6 +136,7 @@ object Generator {
         println(elem.question)
       }
     }*/
+      //<meta charset="utf-8" />
 
     if(buildQuestionsHtml){
       HtmlBuilder.printAnswers = false

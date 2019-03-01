@@ -30,14 +30,14 @@ class ScopeQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question {
       sType match {
         case 0 =>
           s"""$varType1 $varName1 = $varValue1;
-             |$varType2 $varName2 = $varName1 + $varValue2
+             |$varType2 $varName2 = $varName1 + $varValue2;
              |System.out.println($varName1);
            """.stripMargin
         case 1 =>
           s"""int x = 0;
              |if(x > 5){
              |    $varType1 $varName1 = $varValue1;
-             |    $varType2 $varName2 = $varName1 + $varValue2
+             |    $varType2 $varName2 = $varName1 + $varValue2;
              |    System.out.println($varName1);
              |}
            """.stripMargin
@@ -67,13 +67,13 @@ class ScopeQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question {
         case 0 =>
           s"""$varType1 $varName1 = $varValue1;
              |System.out.println($varName2);
-             |$varType2 $varName2 = $varName1 + $varValue2
+             |$varType2 $varName2 = $varName1 + $varValue2;
            """.stripMargin
         case 1 =>
           s"""int x = 0;
              |if(x > 5){
              |    $varType1 $varName1 = $varValue1;
-             |    $varType2 $varName2 = $varName1 + $varValue2
+             |    $varType2 $varName2 = $varName1 + $varValue2;
              |}
              |System.out.println($varName1);
            """.stripMargin
@@ -85,7 +85,7 @@ class ScopeQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question {
              |} else {
              |    $varName1 = $varValue2;
              |}
-             |System.out.println(_$varName3);
+             |System.out.println($varName3);
            """.stripMargin
         case 3 =>
           s"""int y = 2;
