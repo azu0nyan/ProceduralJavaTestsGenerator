@@ -63,7 +63,7 @@ object Generator {
     ""
   )
 
-  def testPrototypeFirstTest:TestPrototype = new TestPrototype(
+  def testPrototypeee:TestPrototype = new TestPrototype(
     Seq(
 
       new PagePrototype(

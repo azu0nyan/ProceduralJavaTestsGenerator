@@ -38,7 +38,7 @@ class IfSyntaxQuestion(answer: BoolAnswer, level: QuestionLevel) extends Questio
           s"""int x = 12;
              |if(x < 2){
              |    $varType2 $varName2 = $varValue2 + $varValue2;
-             |    System.out.println($varName1);
+             |    System.out.println($varName2);
              |}
            """.stripMargin
         case 1 =>

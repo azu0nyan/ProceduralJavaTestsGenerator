@@ -9,18 +9,21 @@ class JCStepsCountQuestion extends JavaCodeCountingQuestion {
     val xName = getRandomShortVarName(r)
     val yName = getRandomShortVarName(Set(xName), r)
     val zName = getRandomShortVarName(Set(xName, yName), r)
+    val sumName = getRandomShortVarName(Set(xName, yName, zName), r)
+    val iName = getRandomShortVarName(Set(xName, yName, zName, sumName), r)
+
     val xValue = r.nextInt(20)
     val yValue = xValue + r.nextInt(15) + 5
     val zValue = r.nextInt(3) + 1
-    val qText = intVarDeclText(Seq((xName, xValue), (yName, yValue), (zName, zValue))) + "\n" +  text(xName, yName, zName)
+    val qText = intVarDeclText(Seq((xName, xValue), (yName, yValue), (zName, zValue))) + "\n" + text(xName, yName, zName, sumName, iName)
     val result = function(xValue, yValue, zValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String, yName: String, zName: String): String = {
-    s"""|int sum = 0;
-       |for (int i = $xName; i < $yName; i = i + $zName) sum++;
-       |System.out.println(sum);
+  def text(xName: String, yName: String, zName: String, sumName: String, iName: String): String = {
+    s"""|int $sumName = 0;
+        |for (int $iName = $xName; $iName < $yName; $iName = $iName + $zName) $sumName++;
+        |System.out.println($sumName);
      """.stripMargin
   }
 }
@@ -32,18 +35,21 @@ class JCYmXMullKQuestion extends JavaCodeCountingQuestion {
     val xName = getRandomShortVarName(r)
     val yName = getRandomShortVarName(Set(xName), r)
     val zName = getRandomShortVarName(Set(xName, yName), r)
+    val sumName = getRandomShortVarName(Set(xName, yName, zName), r)
+    val iName = getRandomShortVarName(Set(xName, yName, zName, sumName), r)
+
     val xValue = r.nextInt(20)
     val yValue = xValue + r.nextInt(15) + 5
     val zValue = r.nextInt(3) + 1
-    val qText = intVarDeclText(Seq((xName, xValue), (yName, yValue), (zName, zValue))) + "\n" +  text(xName, yName, zName)
+    val qText = intVarDeclText(Seq((xName, xValue), (yName, yValue), (zName, zValue))) + "\n" + text(xName, yName, zName, sumName, iName)
     val result = function(xValue, yValue, zValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String, yName: String, zName: String): String = {
-    s"""|int sum = 0;
-        |for (int i = $xName; i < $yName; i++) sum += $zName;
-        |System.out.println(sum);
+  def text(xName: String, yName: String, zName: String, sumName: String, iName: String): String = {
+    s"""|int $sumName = 0;
+        |for (int $iName = $xName; $iName < $yName; $iName++) $sumName += $zName;
+        |System.out.println($sumName);
      """.stripMargin
   }
 }
@@ -53,40 +59,45 @@ class JCDigitsSumKQuestion extends JavaCodeCountingQuestion {
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
     val xName = getRandomShortVarName(r)
+    val yName = getRandomShortVarName(Set(xName), r)
+
     val xValue = r.nextInt(1000000000)
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" + text(xName, yName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String = {
-    s"""|int y = 0;
+  def text(xName: String, yName: String): String = {
+    s"""|int $yName = 0;
         |while ($xName > 0) {
-        |    y = y + $xName % 10;
+        |    $yName = $yName + $xName % 10;
         |    $xName = $xName / 10;
         |}
-        |System.out.println(y);
+        |System.out.println($yName);
      """.stripMargin
   }
 }
+
 class JCDigitsCountKQuestion extends JavaCodeCountingQuestion {
   def function(x: Int) = CyclesTest.digitsCount(x)
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
     val xName = getRandomShortVarName(r)
+    val yName = getRandomShortVarName(Set(xName), r)
+
     val xValue = r.nextInt(1000000000)
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" + text(xName, yName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String = {
-    s"""|int y = 0;
+  def text(xName: String, yName: String): String = {
+    s"""|int $yName = 0;
         |while ($xName > 0) {
-        |    y++;
+        |    $yName++;
         |    $xName = $xName / 10;
         |}
-        |System.out.println(y);
+        |System.out.println($yName);
      """.stripMargin
   }
 }
@@ -95,22 +106,26 @@ class JCFailedSwapQuestion extends JavaCodeCountingQuestion {
   def function(x: Int) = CyclesTest.failedSwapTest(x)
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
-    val xName = getRandomShortVarName(r)
+    val nName = getRandomShortVarName(r)
+    val iName = getRandomShortVarName(Set(nName), r)
+    val xName = getRandomShortVarName(Set(nName, iName), r)
+    val tmpName = getRandomShortVarName(Set(nName, iName, xName), r)
+
     val xValue = (r.nextInt(9) + 1) * 10
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((nName, xValue))) + "\n" + text(nName, iName, xName, tmpName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String =
-    s"""int x[] = {$xName, $xName + 1, $xName + 2, $xName + 3, $xName + 4,
-       |   $xName + 5, $xName + 6, $xName + 7, $xName + 8, $xName + 9};
-       |for (int i = 0; i < x.length; i++) {
-       |    int tmp = x[i];
-       |    x[i] = x[x.length - 1 - i];
-       |    x[x.length - 1 - i] = tmp;
+  def text(nName: String, iName: String, xName: String, tmpName: String): String =
+    s"""int $xName[] = {$nName, $nName + 1, $nName + 2, $nName + 3, $nName + 4,
+       |   $nName + 5, $nName + 6, $nName + 7, $nName + 8, $nName + 9};
+       |for (int $iName = 0; $iName < $xName.length; $iName++) {
+       |    int $tmpName = $xName[$iName];
+       |    $xName[$iName] = $xName[$xName.length - 1 - $iName];
+       |    $xName[$xName.length - 1 - $iName] = $tmpName;
        |}
-       |System.out.println(x[3]);
+       |System.out.println($xName[3]);
      """.stripMargin
 }
 
@@ -118,22 +133,27 @@ class JCSwapQuestion extends JavaCodeCountingQuestion {
   def function(x: Int) = CyclesTest.swapTest(x)
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
-    val xName = getRandomShortVarName(r)
+    val nName = getRandomShortVarName(r)
+    val lName = getRandomShortVarName(Set(nName), r)
+    val rName = getRandomShortVarName(Set(nName, lName), r)
+    val xName = getRandomShortVarName(Set(nName, lName, rName), r)
+    val tName = getRandomShortVarName(Set(nName, lName, rName, xName), r)
+
     val xValue = r.nextInt(100) + 1
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((nName, xValue))) + "\n" + text(nName, lName, xName, rName, tName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String =
-    s"""int x[] = {$xName, $xName + 1, $xName + 2, $xName + 3, $xName + 4,
-       |    $xName + 5, $xName + 6, $xName + 7, $xName + 8, $xName + 9, $xName + 10};
-       |for (int l = 0, r = x.length - 1; l < r; l++, r--) {
-       |    int t = x[l];
-       |    x[l] = x[r];
-       |    x[r] = t;
+  def text(nName: String, lName: String, xName:String, rName: String, tName: String): String =
+    s"""int $xName[] = {$nName, $nName + 1, $nName + 2, $nName + 3, $nName + 4,
+       |    $nName + 5, $nName + 6, $nName + 7, $nName + 8, $nName + 9, $nName + 10};
+       |for (int $lName = 0, $rName = $xName.length - 1; $lName < $rName; $lName++, $rName--) {
+       |    int $tName = $xName[$lName];
+       |    $xName[$lName] = $xName[$rName];
+       |    $xName[$rName] = $tName;
        |}
-       |System.out.println(x[4]);
+       |System.out.println($xName[4]);
      """.stripMargin
 }
 
@@ -142,21 +162,25 @@ class JCClosestQuestion extends JavaCodeCountingQuestion {
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
     val xName = getRandomShortVarName(r)
+    val aName = getRandomShortVarName(Set(xName), r)
+    val cName = getRandomShortVarName(Set(xName, aName), r)
+    val iName = getRandomShortVarName(Set(xName, aName, cName), r)
+
     val xValue = r.nextInt(1000) + 1
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" + text(xName, aName, cName, iName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String =
-    s"""|int a[] = {100,200,300,400,500,600,700,800,900,1000};
-        |int c = 0;
-        |for (int i = 0; i < a.length; i++) {
-        |    if (a[i] > c && a[i] < $xName) {
-        |        c = a[i];
+  def text(xName: String, aName: String, cName: String, iName: String): String =
+    s"""|int $aName[] = {100,200,300,400,500,600,700,800,900,1000};
+        |int $cName = 0;
+        |for (int $iName = 0; $iName < $aName.length; $iName++) {
+        |    if ($aName[$iName] > $cName && $aName[$iName] < $xName) {
+        |        $cName = $aName[$iName];
         |    }
         |}
-        |System.out.println(c);
+        |System.out.println($cName);
      """.stripMargin
 }
 
@@ -165,17 +189,20 @@ class JCarrayIndexesQuestion extends JavaCodeCountingQuestion {
 
   override def generate(r: Random, id: Int): QuestionAndAnswer = {
     val xName = getRandomShortVarName(r)
+    val aName = getRandomShortVarName(Set(xName), r)
+    val iName = getRandomShortVarName(Set(xName, aName), r)
+
     val xValue = r.nextInt(100) + 10
-    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" +  text(xName)
+    val qText = intVarDeclText(Seq((xName, xValue))) + "\n" + text(xName, aName, iName)
     val result = function(xValue)
     new QuestionAndAnswer(qText, IntAnswer(result), id)
   }
 
-  def text(xName: String): String =
-    s"""|int a[] = new int[$xName];
-       |for (int i = 0; i < a.length; i++) {
-       |    a[i] = a.length - i - 1;
-       |}
-       |System.out.println(a[$xName / 3)];
+  def text(xName: String, aName: String, iName: String): String =
+    s"""|int $aName[] = new int[$xName];
+        |for (int $iName = 0; $iName < $aName.length; $iName++) {
+        |    $aName[$iName] = $aName.length - $iName - 1;
+        |}
+        |System.out.println($aName[$xName / 3)];
      """.stripMargin
 }
