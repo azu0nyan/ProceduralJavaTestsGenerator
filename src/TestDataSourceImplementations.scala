@@ -75,7 +75,7 @@ object EasyGoodStringLiterals extends ConstantArrayDataSource[String](dataArray 
   "\"wisest and fairest\"",
 
   "\"Seven to the dwarf lords:\"",
-  "\"Great miners and craftsmen\",",
+  "\"Great miners and craftsmen\"",
   "\" of the mountain halls\"",
 
   "\"And nine, nine rings \"",

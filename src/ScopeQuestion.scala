@@ -52,8 +52,8 @@ class ScopeQuestion(answer: BoolAnswer, level: QuestionLevel) extends Question {
              |System.out.println($varName1);
            """.stripMargin
         case 3 =>
-          s"""$varType1 $varName1;
-             |int y = 2;
+          s"""$varType1 $varName1 = $varValue1;
+             |int y = 5;
              |if(y > 3){
              |    $varName1 = $varValue1;
              |}

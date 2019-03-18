@@ -11,7 +11,7 @@ object Generator {
 
   def variantsToGenerate = 15
   def seed = 0
-  def testPrototype:TestPrototype = new TestPrototype(
+  def testPrototypeee:TestPrototype = new TestPrototype(
     Seq(
 
       new PagePrototype(
@@ -37,10 +37,9 @@ object Generator {
           new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy()),
           new VariableAssigmentTypeQuestion(BoolAnswer(false), Easy())
         )
-      ),
-      new PagePrototype(
+      ),      new PagePrototype(
         "name & class:_____________________________________",
-        1,
+        0,
         Seq(
           new JCFailedSwapQuestion,
           new JCSwapQuestion,
@@ -56,14 +55,15 @@ object Generator {
           new JCYmXMullKQuestion,
           new JCarrayIndexesQuestion,
           new JCarrayIndexesQuestion,
-        )
+        ),
+        "Запишите в поле ответа число, которое напечатает программа."
       )
     ),
     "",
     ""
   )
 
-  def testPrototypeee:TestPrototype = new TestPrototype(
+  def testPrototype:TestPrototype = new TestPrototype(
     Seq(
 
       new PagePrototype(
@@ -94,7 +94,8 @@ object Generator {
           new VariableNamingQuestion(BoolAnswer(true), Medium()),
           new ScopeQuestion(BoolAnswer(true), Medium()),
           new ScopeQuestion(BoolAnswer(true), Medium()),
-        )
+        ),
+        "Закрась квадратики соответствующие правильным программам"
       ),
       new PagePrototype(
         "name & class:_____________________________________",
@@ -116,7 +117,8 @@ object Generator {
           new IfSyntaxQuestion(BoolAnswer(false), Easy()),
           new IfSyntaxQuestion(BoolAnswer(false), Easy()),
           new IfSyntaxQuestion(BoolAnswer(false), Easy()),
-        )
+        ),
+          "Закрась квадратики соответствубщие правильным программам"
       )
     ),
     "",

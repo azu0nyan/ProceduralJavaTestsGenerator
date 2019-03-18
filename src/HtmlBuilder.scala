@@ -38,7 +38,7 @@ object HtmlBuilder {
       } else
         div(),
       div(width := 1000, height := 100) (
-        div(textAlign:= "center")(h2(float := "center", margin :=5)("answers")),
+        div(textAlign:= "center")(h2(float := "center", margin :=5)(page.answersText)),
         table(CssStyles.answerTableStyle)(
           tr(CssStyles.answerTableTdThStyle)(
             for(question <- page.questions) yield th(CssStyles.answerTableTdThStyle)(question.index)
@@ -81,6 +81,7 @@ object HtmlBuilder {
 
   def buildHtml(conent:Frag):String = {
       "<!DOCTYPE html>" +
+      "<meta charset=\"UTF-8\">" +
       html(
         head(
           tag("style")(tpe := "text/css", CssStyles.styleSheetText)

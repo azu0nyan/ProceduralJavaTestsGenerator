@@ -1,30 +1,29 @@
 import scala.util.Random
 //todo class answer
 
-class QuestionAndAnswer(val question: String, val answer: Answer,val index : Int){
-  def print(): Unit ={
+class QuestionAndAnswer(val question: String, val answer: Answer, val index: Int) {
+  def print(): Unit = {
     println(s"$index : $answer")
     println(question)
   }
 }
 
-class Page(val title:String,val  index:Int,val  questions:Seq[QuestionAndAnswer])
+class Page(val title: String, val index: Int, val questions: Seq[QuestionAndAnswer], val answersText: String)
 
 
-
-class PagePrototype(val title:String, val index:Int, val questions:Seq[Question]){
-  def generatePage(startIndex:Int, seed: Int): Page ={
+class PagePrototype(val title: String, val index: Int, val questions: Seq[Question], val answersText: String = "answers") {
+  def generatePage(startIndex: Int, seed: Int): Page = {
     val r = new Random()
     scala.util.Random.setSeed(r.nextInt)
-    val shuffled:Seq[Question] = scala.util.Random.shuffle(questions)
+    val shuffled: Seq[Question] = scala.util.Random.shuffle(questions)
     val zipped = (startIndex to (startIndex + questions.length)).zip(shuffled)
-    val list = for(q <-zipped) yield q._2.generateQaA(r.nextInt, q._1)
-    new Page(title, index, list)
+    val list = for (q <- zipped) yield q._2.generateQaA(r.nextInt, q._1)
+    new Page(title, index, list, answersText)
   }
 }
 
-class TestPrototype(val pages:Seq[PagePrototype], val title: String, val description : String = ""){
-  def generateTest(variantIndex:Int, seed:Int): TestVariant = {
+class TestPrototype(val pages: Seq[PagePrototype], val title: String, val description: String = "") {
+  def generateTest(variantIndex: Int, seed: Int): TestVariant = {
     val r = new Random()
     val zipped = (1 to pages.length).zip(pages)
     val list = for (p <- zipped) yield p._2.generatePage(0, r.nextInt)
@@ -33,7 +32,8 @@ class TestPrototype(val pages:Seq[PagePrototype], val title: String, val descrip
   }
 }
 
-class TestVariant(val pages:Seq[Page], val title: String, val description:String = "")
+class TestVariant(val pages: Seq[Page], val title: String, val description: String = "")
+
 // {
 //
 //
